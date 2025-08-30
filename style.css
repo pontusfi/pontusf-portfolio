@@ -101,9 +101,8 @@ section {
 }
 
 .read-more-btn {
-  margin: 10px 0;
-  padding: 8px 16px;
-  background: linear-gradient(45deg, #00e0ff, #ff4ecd);
+  margin: 100px 0;
+  
   border: none;
   border-radius: 20px;
   color: #fff;
@@ -143,15 +142,26 @@ section {
   object-fit: cover;
   border: 3px solid #00e0ff;
   box-shadow: 0 0 15px rgba(0, 224, 255, 0.7);
+  transition: 0.3s;
 }
 
+.profile-pic:hover{
+  transform: scale(1.05);
+}
 /*Projects  */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* max 2 per row */
   gap: 20px;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 40px auto 0;
+}
+
+/* On smaller screens → stack them in 1 column */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 }
 .project-card img {
   width: 100%;
@@ -243,3 +253,124 @@ section {
     right: 20px;
   }
 }
+
+
+
+
+/* ========================= */
+/* PROJECT PAGE STYLES       */
+/* ========================= */
+
+/* Hero Banner */
+.project-hero {
+  text-align: center;
+  padding: 100px 20px;
+  margin-bottom: 40px;
+}
+.project-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #00e0ff;
+  text-shadow: 0 0 15px rgba(0, 224, 255, 0.8);
+}
+.project-hero .subtitle {
+  font-size: 1.2rem;
+  color: #ddd;
+}
+
+/* Section Base */
+.project-overview,
+.project-tech,
+.project-challenges {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+}
+
+/* Screenshot Grid */
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 20px auto;
+}
+.screenshot-grid img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+.screenshot-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Tech Tags */
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+.tech-tags span {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+}
+
+/* Features List */
+.project-features {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: left;
+}
+.project-features ul {
+  list-style: none;
+  margin-top: 15px;
+}
+.project-features li {
+  margin: 10px 0;
+  padding-left: 25px;
+  position: relative;
+}
+.project-features li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #00e0ff;
+  text-shadow: 0 0 8px #00e0ff;
+}
+
+/* Links Section */
+.project-links {
+  text-align: center;
+  margin: 40px 0;
+}
+.project-links .btn {
+  margin: 10px;
+  display: inline-block;
+}
+
+/* Footer (Back Button) */
+.project-footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.05);
+}
+.project-footer .btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, #00e0ff, #ff4ecd);
+  border-radius: 25px;
+  color: #fff;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+.project-footer .btn:hover {
+  transform: scale(1.05);
+}
+

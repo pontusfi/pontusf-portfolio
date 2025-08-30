@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Title - Portfolio</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Hero Banner -->
+  <header class="project-hero glass">
+    <h1>RNN and LSTM - Text Synthesis</h1>
+    <p class="subtitle">Evaluating and comparing performance of a vanilla RNN and LSTM neural network for text synthesis</p>
+  </header>
+
+  <!-- Overview -->
+  <section class="project-overview section glass">
+    <h2>Overview</h2>
+    <p>This project explores the use of Recurrent Neural Networks (RNNs) and Long Short-Term Memory networks (LSTMs) for character-level text generation, 
+      using a dataset of Shakespeare’s plays. We implemented both a vanilla RNN and an LSTM, comparing their performance in terms of training, validation, 
+      and test losses, as well as the quality of the generated text. Hyperparameters such as learning rate, batch size, and sequence length were optimized 
+      through grid search. We also investigated the impact of hidden state dimensionality on model performance. Evaluation included quantitative metrics 
+      like n-gram accuracy and spelling correctness, alongside qualitative assessment by reading the generated text. The results indicate that LSTMs outperform vanilla RNNs, 
+      demonstrating a superior ability to capture long-range dependencies in sequential data.</p>
+  </section>
+
+  <!-- Screenshots -->
+  <section class="project-media section">
+    <h2 class="section-title">Screenshots</h2>
+    <div class="screenshot-grid">
+      <img src="../assets/LSTM_1_layer_loss_plot.png" alt="Screenshot 1">
+      <img src="../assets/synthesizedtext.png" alt="Screenshot 2">
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="project-tech section glass">
+    <h2>Tech Stack</h2>
+    <div class="tech-tags">
+      <span>Python</span><span>PyTorch</span><span>Numpy</span><span>Pickle</span>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="project-features section">
+    <h2>Features</h2>
+    <ul>
+      <li>Implemented RNN and LSTM</li>
+      <li>Implemented word2vec and BPE</li>
+      <li>Searched, tuned and evaluated hyperparameters</li>
+    </ul>
+  </section>
+
+  <!-- Challenges -->
+  <section class="project-challenges section glass">
+    <h2>My Role & Challenges</h2>
+    <p>I mostly acquired skills in how to use the PyTorch library more extensively for this kind of task. 
+      Previously I had implemented a RNN model from scratch just using Python. That meant implemeting everything from scratch, such as the forward pass and backprop algorithm.
+      In this project I worked on implementing this type of network using PyTorch and adapting it to our project. This also involved writing the functionality to synthesize synthesize text.
+       Along with this I have also gained a better understanding of LSTMs and how they work. Also I worked quite extensively on analyzing 
+      and searching for the best hyperparameters for our network. In this case i implemented a grid search and deciding what hyperparameter to tweak and what values 
+      to search for. After finding best parameters I also worked on analyzing the networks performance during training in order to find how many epochs we should use in the end. 
+      During this process I learned a lot about how the parameters can affect the networks performance and also about how the dimensionality of the hidder layer affects the result. 
+      Lastly I have also greatly increased my understanding of the principles behind word2vec and BPE even though I was not the main person implementing it.</p>
+  </section>
+
+  <!-- Links -->
+  <section class="project-links section">
+    <a href="https://github.com/HaraldHR/NLP_Project" class="btn">GitHub</a>
+  </section>
+
+   <!-- Extra: report -->
+  <section class="project-report section glass">
+    <h2>Project Report</h2>
+    <embed src="../assets/NLP_Project_Report.pdf" type="application/pdf" width="100%" height="600px" />
+    <a href="../assets/NLP_Project_Report.pdf" target="_blank" class="btn">
+      Open / Download PDF
+    </a>
+  </section>
+
+
+ 
+  <footer class="project-footer">
+    <a href="../index.html" class="btn">⬅ Back to Portfolio</a>
+  </footer>
+</body>
+</html>
