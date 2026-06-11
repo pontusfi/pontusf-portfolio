@@ -5,209 +5,389 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pontus Filén</title>
 
-  
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- bullet points nav -->
-  <nav class="side-nav">
-    <ul>
-      <li><a href="#hero">🏠</a></li>
-      <li><a href="#about">👤</a></li>
-      <li><a href="#education">🎓</a></li>
-      <li><a href="#projects">💻</a></li>
-      <li><a href="#contact">✉️</a></li>
-    </ul>
+
+  <!-- Scroll progress bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#top" class="nav-logo">
+      <span class="nav-logo-mark"></span>
+      <span class="nav-logo-text mono">PONTUS&nbsp;FILÉN</span>
+    </a>
+    <div class="nav-desktop">
+      <a href="#about" class="nav-link mono">About</a>
+      <a href="#work" class="nav-link mono">Work</a>
+      <a href="#education" class="nav-link mono">Education</a>
+      <a href="#contact" class="nav-cta mono">Get in touch</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu">
+      <span class="nav-burger-line"></span>
+      <span class="nav-burger-line"></span>
+      <span class="nav-burger-line"></span>
+    </button>
   </nav>
 
-  <!-- welcome -->
-  <section id="hero" class="section hero">
-    <div class="hero-content glass">
-      <h1>Hi, I’m <span class="accent">Pontus Filén</span></h1>
-      <img src="assets/cv_bild.jpg" alt="Your photo" class="profile-pic">
-      <p class="tagline">Computer Science student at KTH Royal Institute of Technology</p>
-      <a href="#projects" class="btn">View My Work</a>
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mobile-link mono">About</a>
+    <a href="#work" class="mobile-link mono">Work</a>
+    <a href="#education" class="mobile-link mono">Education</a>
+    <a href="#contact" class="mobile-link mono">Contact</a>
+    <a href="#contact" class="mobile-cta mono">Get in touch →</a>
+  </div>
+
+  <!-- Hero -->
+  <section id="top" class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge mono">
+          <span class="hero-badge-dot"></span>
+          AI · MACHINE LEARNING ENGINEER
+        </div>
+        <h1 class="hero-title">
+          Teaching machines to <span class="accent">learn, reason,</span> and adapt.
+        </h1>
+        <p class="hero-text">
+          I'm Pontus Filén — an AI engineer and Computer Science master's student at KTH, specializing in Data Science &amp; Machine Learning. I turn research into systems that work: from LLM-orchestrated agents to predictive models for real-world logistics.
+        </p>
+        <div class="hero-actions">
+          <a href="#work" class="btn-primary">View work <span>→</span></a>
+          <a href="#contact" class="btn-secondary">Get in touch</a>
+        </div>
+        <div class="hero-meta mono">
+          <span>◷&nbsp; STOCKHOLM, SE</span>
+          <span>◇&nbsp; KTH ROYAL INSTITUTE</span>
+          <span class="available">●&nbsp; AVAILABLE 2026</span>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <canvas id="neuralField"></canvas>
+        <span class="panel-corner tl"></span>
+        <span class="panel-corner tr"></span>
+        <span class="panel-corner bl"></span>
+        <span class="panel-corner br"></span>
+        <div class="panel-label mono">
+          <span class="panel-label-dot"></span>
+          neural_field.live
+        </div>
+        <div class="panel-footer mono">
+          <span>move cursor to perturb the field</span>
+          <span>n=40</span>
+        </div>
+      </div>
     </div>
+
+    <a href="#about" class="scroll-hint" id="scrollHint">
+      <span class="scroll-hint-label mono">SCROLL</span>
+      <span class="scroll-hint-mouse">
+        <span class="scroll-hint-dot"></span>
+      </span>
+    </a>
   </section>
 
   <!-- About -->
-  <section id="about" class="section about">
-    <div class="container glass">
-      <img src="assets/cv_bild.jpg" alt="Your photo" class="profile-pic">
-      <div class="about-text">
-        <h2>About Me</h2>
-        <p>Hi, I’m Pontus Filén! A tech lover with a passion for music, gaming, and the world of AI. 
-            Since 2021, I’ve been studying at KTH Royal Institute of Technology, where I completed my Bachelor’s 
-            in Media Technology in 2024. I’m now wrapping up my Master’s in Computer Science with a specialization in 
-            Data Science and Machine Learning. During my studies i have combined the practices of creativity and technology, 
-            and I love exploring how intelligent systems can shape the future.</p>
+  <section id="about" class="section">
+    <div class="section-label" data-reveal>
+      <span class="section-label-text mono">01&nbsp;/&nbsp;ABOUT</span>
+      <span class="section-label-line"></span>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo-col" data-reveal>
+        <div class="about-photo">
+          <img src="assets/cv_bild.jpg" alt="Pontus Filén">
+        </div>
+        <div class="about-photo-caption mono">
+          <span>PONTUS_FILEN.jpg</span><span>STOCKHOLM · SE</span>
+        </div>
+      </div>
+      <div class="about-content" data-reveal data-delay="120">
+        <h2 class="about-heading">Turning curiosity about intelligent systems into things that actually run.</h2>
+        <p class="about-text">A tech lover with a passion for music, gaming and the world of AI. Since 2021 I've studied at KTH Royal Institute of Technology, completing my Bachelor's in Media Technology in 2024. I'm now wrapping up my Master's in Computer Science with a specialization in Data Science and Machine Learning.</p>
+        <p class="about-text">Across my studies I've combined creativity with engineering rigor — and I love exploring how intelligent systems can shape the way we work, play, and move through the world.</p>
+        <div class="skills-grid">
+          <div>
+            <div class="skill-group-title mono">LEARNING &amp; AI</div>
+            <div class="skill-tags">
+              <span class="tag mono">PyTorch</span>
+              <span class="tag mono">NumPy</span>
+              <span class="tag mono">LLMs</span>
+              <span class="tag mono">RL</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-title mono">LANGUAGES</div>
+            <div class="skill-tags">
+              <span class="tag mono">Python</span>
+              <span class="tag mono">Java</span>
+              <span class="tag mono">C#</span>
+              <span class="tag mono">JavaScript</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-title mono">BUILD &amp; TOOLS</div>
+            <div class="skill-tags">
+              <span class="tag mono">React</span>
+              <span class="tag mono">Unity</span>
+              <span class="tag mono">Firebase</span>
+              <span class="tag mono">Git</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
   </section>
 
-    <!-- Education -->
-  <section id="education" class="section education">
-    <h2 class="section-title">Education & Experience</h2>
+  <!-- Education -->
+  <section id="education" class="section" style="padding-top: clamp(40px, 5vw, 70px);">
+    <div class="section-label" data-reveal>
+      <span class="section-label-text mono">02&nbsp;/&nbsp;EDUCATION</span>
+      <span class="section-label-line"></span>
+    </div>
     <div class="timeline">
-            <div class="timeline-item glass">
-        <h3>KTH, Royal Institute of Technology</h3>
-        <span class="date">2024 – 2026</span>
-        <p>Master’s Degree in Computer Science</p>
+      <div class="timeline-item" data-reveal>
+        <span class="timeline-dot current"></span>
+        <div class="timeline-date mono current">2024 — 2026 · CURRENT</div>
+        <h3 class="timeline-title">M.Sc. Computer Science</h3>
+        <div class="timeline-desc">KTH Royal Institute of Technology · Specialization in Data Science &amp; Machine Learning</div>
       </div>
-        <div class="timeline-item glass">
-        <h3>KTH, Royal Institute of Technology</h3>
-        <span class="date">2021 – 2024</span>
-        <p>Bachelor’s Degree in Media Technology</p>
+      <div class="timeline-item" data-reveal data-delay="100">
+        <span class="timeline-dot"></span>
+        <div class="timeline-date mono">2021 — 2024</div>
+        <h3 class="timeline-title">B.Sc. Media Technology</h3>
+        <div class="timeline-desc">KTH Royal Institute of Technology</div>
       </div>
-
-      <div class="timeline-item glass">
-        <h3>Östra Gymnasiet, Huddinge</h3>
-        <span class="date">2018 – 2021</span>
-        <p>High School Diploma in Media Technology</p>
+      <div class="timeline-item" data-reveal data-delay="200">
+        <span class="timeline-dot"></span>
+        <div class="timeline-date mono">2018 — 2021</div>
+        <h3 class="timeline-title">High School Diploma · Media Technology</h3>
+        <div class="timeline-desc">Östra Gymnasiet, Huddinge</div>
       </div>
     </div>
   </section>
 
-  <!-- Projects -->
-
-
-
-  <!-- EA SEED -->
-  <section id="projects" class="section projects">
-    <h2 class="section-title">Projects</h2>
-    <div class="projects-grid">
-
-      <div class="project-card glass">
-      <div class="status-badge">In Progress</div>
-      <img src="assets/delay_pred.jpg" alt="No screenshot available">
-      <h3>Master's Thesis - Predicting transport delays in courier logistics using machine learning</h3>
-      <p>In recent years, machine learning–based predictive systems have become increasingly important
-within logistics and transportation research. There have been an increased interest in exploring data
-driven optimization approaches to improve service reliability. This project is within the broader research area of applied machine learning in logistics and operations
-research. It will explore how historical operational data from Jetpak can be used to make predictions
-about transport delays and identify the underlying factors that most strongly influence performance.</p>
-      <div class="tags">
-        <span>Machine Learning</span><span>AI</span><span>Research</span>
-      </div>
-      <a href="projectpages/masters-thesis.html" class="read-more-btn">Read More</a>
+  <!-- Work -->
+  <section id="work" class="section work-section" style="padding-top: clamp(30px, 4vw, 50px);">
+    <div class="section-label" data-reveal>
+      <span class="section-label-text mono">03&nbsp;/&nbsp;SELECTED WORK</span>
+      <span class="section-label-line"></span>
+    </div>
+    <div class="work-header" data-reveal>
+      <h2 class="work-heading">Research, models, and systems I've shipped.</h2>
+      <span class="work-meta mono">06 PROJECTS · CLICK TO OPEN</span>
     </div>
 
-      <div class="project-card glass">
-      <img src="assets/easeedscreenshot.png" alt="Project screenshot">
-      <h3>EA SEED — Hierarchical AI for Smarter NPCs</h3>
-      <p>Combining the strategic strengths of LLMs with the fast reflexes of RL to create smarter, more adaptive NPCs. 
-A hierarchical system lets an LLM orchestrate multiple RL agents for tasks like navigation and combat.</p>
-      <div class="tags">
-        <span>Machine Learning</span><span>AI</span><span>Reinforcement Learning</span><span>LLMs</span><span>Unity</span>
+    <div class="projects-grid" data-reveal>
+
+      <article class="project-card" data-pid="masters-thesis">
+        <div class="project-thumb">
+          <img src="assets/delay_pred.jpg" alt="">
+          <div class="project-thumb-gradient"></div>
+          <span class="project-number mono">01</span>
+          <span class="project-badge mono">IN PROGRESS</span>
+        </div>
+        <div class="project-body">
+          <div class="project-category mono">MASTER'S THESIS · APPLIED ML</div>
+          <h3 class="project-title">Predicting transport delays in courier logistics</h3>
+          <p class="project-desc">Data-driven delay prediction on real operational data from Jetpak — surfacing the factors that most influence service reliability.</p>
+          <div class="project-tags">
+            <span class="tag mono">Machine Learning</span>
+            <span class="tag mono">PyTorch</span>
+            <span class="tag mono">Python</span>
+          </div>
+          <span class="project-link mono">Read case <span>→</span></span>
+        </div>
+      </article>
+
+      <article class="project-card" data-pid="ea-seed">
+        <div class="project-thumb">
+          <img src="assets/easeedscreenshot.png" alt="">
+          <div class="project-thumb-gradient"></div>
+          <span class="project-number mono">02</span>
+        </div>
+        <div class="project-body">
+          <div class="project-category mono">EA SEED · LLM + RL</div>
+          <h3 class="project-title">Hierarchical AI for smarter NPCs</h3>
+          <p class="project-desc">An LLM orchestrates multiple RL agents — pairing strategic reasoning with fast reflexes for adaptive game characters.</p>
+          <div class="project-tags">
+            <span class="tag mono">Reinforcement Learning</span>
+            <span class="tag mono">LLMs</span>
+            <span class="tag mono">Unity</span>
+          </div>
+          <span class="project-link mono">Read case <span>→</span></span>
+        </div>
+      </article>
+
+      <article class="project-card" data-pid="bachelors">
+        <div class="project-thumb">
+          <img src="assets/kex_level.PNG" alt="">
+          <div class="project-thumb-gradient"></div>
+          <span class="project-number mono">03</span>
+        </div>
+        <div class="project-body">
+          <div class="project-category mono">BACHELOR'S THESIS · USER STUDY</div>
+          <h3 class="project-title">Auditory vs. visual feedback in FPS games</h3>
+          <p class="project-desc">A user study comparing how visual and audio feedback shape player performance — built on a custom Unity test environment.</p>
+          <div class="project-tags">
+            <span class="tag mono">Unity</span>
+            <span class="tag mono">C#</span>
+            <span class="tag mono">User Study</span>
+          </div>
+          <span class="project-link mono">Read case <span>→</span></span>
+        </div>
+      </article>
+
+      <article class="project-card" data-pid="rnn-lstm">
+        <div class="project-thumb">
+          <img src="assets/synthesizedtext.png" alt="">
+          <div class="project-thumb-gradient"></div>
+          <span class="project-number mono">04</span>
+        </div>
+        <div class="project-body">
+          <div class="project-category mono">DEEP LEARNING · NLP</div>
+          <h3 class="project-title">RNN &amp; LSTM text synthesis</h3>
+          <p class="project-desc">Character-level text generation comparing a vanilla RNN against an LSTM — with LSTMs winning on long-range dependencies.</p>
+          <div class="project-tags">
+            <span class="tag mono">PyTorch</span>
+            <span class="tag mono">Python</span>
+            <span class="tag mono">NumPy</span>
+          </div>
+          <span class="project-link mono">Read case <span>→</span></span>
+        </div>
+      </article>
+
+      <article class="project-card" data-pid="movieline">
+        <div class="project-thumb">
+          <img src="assets/movieline.PNG" alt="">
+          <div class="project-thumb-gradient"></div>
+          <span class="project-number mono">05</span>
+        </div>
+        <div class="project-body">
+          <div class="project-category mono">WEB · FULL-STACK</div>
+          <h3 class="project-title">Movieline</h3>
+          <p class="project-desc">An interactive timeline game — place as many movies in the right order as you can. Built in React with a Firebase backend.</p>
+          <div class="project-tags">
+            <span class="tag mono">React</span>
+            <span class="tag mono">Firebase</span>
+            <span class="tag mono">JavaScript</span>
+          </div>
+          <span class="project-link mono">Read case <span>→</span></span>
+        </div>
+      </article>
+
+      <article class="project-card" data-pid="ci-server">
+        <div class="project-thumb">
+          <img src="assets/ciserverscreenshot.png" alt="">
+          <div class="project-thumb-gradient"></div>
+          <span class="project-number mono">06</span>
+        </div>
+        <div class="project-body">
+          <div class="project-category mono">SOFTWARE ENGINEERING</div>
+          <h3 class="project-title">Continuous Integration server</h3>
+          <p class="project-desc">A lightweight CI server built from scratch — webhook-triggered builds, automated execution, and commit status reporting.</p>
+          <div class="project-tags">
+            <span class="tag mono">Java</span>
+            <span class="tag mono">Maven</span>
+            <span class="tag mono">Webhooks</span>
+          </div>
+          <span class="project-link mono">Read case <span>→</span></span>
+        </div>
+      </article>
+
+      <div class="project-card-more">
+        <span class="project-card-more-cmd mono">$ git log --oneline</span>
+        <div class="project-card-more-title">More projects in progress</div>
+        <p class="project-card-more-desc">New work is committed here as it ships.</p>
       </div>
-      <div class="links">
-        <a href="https://github.com/pontusfi/EA_SEED_PROJECT">GitHub</a>
-      </div>
-      <a href="projectpages/ea_seed_project.html" class="read-more-btn">Read More</a>
-    </div>
 
-
-      <div class="project-card glass">
-        <img src="assets/kex_level.PNG" alt="Project screenshot">
-        <h3>Bachelor’s Thesis - Comparing auditory and visual feedback in FPS games</h3>
-        <p>In this project I conducted a user study together with Alexander Gemal in order to try and compare the impacts
-          of visual and auditory feedback in FPS games and how they impact player performance. This consisted of creating
-        a small FPS game in unity acting as our test environment and then conducting the user tests. </p>
-        <div class="tags">
-          <span>Unity</span><span>C#</span><span>Game Dev</span><span>User Study</span>
-        </div>
-        <div class="links">
-          <a href="https://github.com/pontusfi/KEX/tree/master">GitHub</a>
-        </div>
-        <a href="projectpages/bachelors_project.html" class="read-more-btn">Read More</a>
-      </div>
-
-
-        <div class="project-card glass">
-          <img src="assets/synthesizedtext.png" alt="Project screenshot">
-        <h3>RNN and LSTM - Text Synthesis</h3>
-        <p>Explored character-level text generation with RNNs vs. LSTMs; LSTMs produced superior results.</p>
-        <div class="tags">
-          <span>Deep Learning</span><span>Python</span><span>PyTorch</span><span>Numpy</span><span>Pickle</span>
-        </div>
-        <div class="links">
-          <a href="https://github.com/HaraldHR/NLP_Project">GitHub</a>
-        </div>
-        <a href="projectpages/RNNandLSTM_project.html" class="read-more-btn">Read More</a>
-        
-      </div>
-      
-      <!-- Movieline -->
-      <div class="project-card glass">
-        <img src="assets/movieline.PNG" alt="Project screenshot">
-        <h3>Movieline</h3>
-        <p>A web based interactive timeline game with the goal of placing as many movies as you can in the correct order. </p>
-        <div class="tags">
-          <span>HTML</span><span>CSS</span><span>React</span>
-        </div>
-        <div class="links">
-          <a href="https://gits-15.sys.kth.se/pfilen/movieline_project_group_47">GitHub</a>
-        </div>
-        <a href="projectpages/movieline_project.html" class="read-more-btn">Read More</a>
-      </div>
-
-      <!-- CI Server -->
-      <div class="project-card glass">
-        <img src="assets/ciserverscreenshot.png" alt="Project screenshot">
-        <h3>Continous Integration (CI) Server</h3>
-        <p>Learned about the principles of Continous Integration and put it into practice by deveoping our own CI-Server </p>
-        <div class="tags">
-          <span>Java</span><span>Maven</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Webbhooks</span><span>Ngrok</span>
-        </div>
-        <div class="links">
-          <a href="https://github.com/Soffan-Group-3/CD-Server">GitHub</a>
-        </div>
-               <a href="projectpages/ciserver_project.html" class="read-more-btn">Read More</a>
-      </div>
-
-      <div class="project-card glass">
-        <h3>More being added...</h3>
-        <p>More projects will be added to this page soon. </p>
-      </div>
-
-
-
-      <!-- Movieline 
-      <div class="project-card glass">
-        <img src="project1.jpg" alt="Project screenshot">
-        <h3>Movieline</h3>
-        <p>A web based interactive timeline game with the goal of placing as many movies as you can in the correct order. </p>
-        <div class="tags">
-          <span>HTML</span><span>CSS</span><span>React</span>
-        </div>
-        <div class="links">
-          <a href="#">GitHub</a>
-        </div>
-      </div>
--->
-
-      
     </div>
   </section>
-
-
 
   <!-- Contact -->
-  <section id="contact" class="section contact">
-    <h2 class="section-title">Get In Touch</h2>
-    <div class="contact-box glass">
-      <p>Email: <a href="mailto:pontus@filen.se">pontus@filen.se</a></p>
-      <p>GitHub: <a href="https://github.com/pontusfi">Visit me on GitHub</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/pontus-fil%C3%A9n-49147121b/">Connect With Me</a></p>
+  <section id="contact" class="section" style="padding-top: clamp(40px, 5vw, 70px); padding-bottom: clamp(60px, 7vw, 90px);">
+    <div class="section-label" data-reveal>
+      <span class="section-label-text mono">04&nbsp;/&nbsp;CONTACT</span>
+      <span class="section-label-line"></span>
+    </div>
+    <div class="contact-grid" data-reveal>
+      <h2 class="contact-heading">Let's build something <span class="accent">intelligent.</span></h2>
+      <div class="contact-links">
+        <a href="mailto:pontus@filen.se" class="contact-link">
+          <span class="contact-link-info">
+            <span class="contact-link-label mono">EMAIL</span>
+            <span class="contact-link-value">pontus@filen.se</span>
+          </span>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://github.com/pontusfi" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-link-info">
+            <span class="contact-link-label mono">GITHUB</span>
+            <span class="contact-link-value">github.com/pontusfi</span>
+          </span>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/pontus-fil%C3%A9n-49147121b/" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-link-info">
+            <span class="contact-link-label mono">LINKEDIN</span>
+            <span class="contact-link-value">Connect with me</span>
+          </span>
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <p>2026 Pontus Filén</p>
+  <footer class="site-footer">
+    <span class="footer-text mono">© 2026 PONTUS FILÉN · BUILT IN STOCKHOLM</span>
+    <a href="#top" class="footer-top-link mono">BACK TO TOP ↑</a>
   </footer>
+
+  <!-- Project detail overlay -->
+  <div class="project-overlay" id="projectOverlay">
+    <div class="overlay-header">
+      <button class="overlay-back" id="overlayBack"><span style="font-size:16px;">←</span> Back to work</button>
+      <span class="overlay-header-category mono" id="overlayHeaderCategory"></span>
+    </div>
+    <div class="overlay-content">
+      <span class="overlay-status mono" id="overlayStatus" style="display:none;"></span>
+      <div class="overlay-category mono" id="overlayCategory"></div>
+      <h1 class="overlay-title" id="overlayTitle"></h1>
+      <p class="overlay-subtitle" id="overlaySubtitle"></p>
+
+      <div class="overlay-tags" id="overlayTags"></div>
+
+      <div class="overlay-screens" id="overlayScreens"></div>
+
+      <div class="overlay-grid">
+        <div>
+          <div class="overlay-section-label mono">OVERVIEW</div>
+          <p class="overlay-overview" id="overlayOverview"></p>
+        </div>
+        <div>
+          <div class="overlay-section-label mono">WHAT I BUILT</div>
+          <div class="overlay-features" id="overlayFeatures"></div>
+        </div>
+      </div>
+
+      <div class="overlay-role-section">
+        <div class="overlay-section-label mono">MY ROLE &amp; CHALLENGES</div>
+        <p class="overlay-role" id="overlayRole"></p>
+      </div>
+
+      <div class="overlay-actions" id="overlayActions">
+        <button class="btn-ghost" id="overlayBackBottom">← Back to all work</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
