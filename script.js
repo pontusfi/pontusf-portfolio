@@ -111,6 +111,70 @@ const projects = {
   }
 };
 
+// ===== Career & Experience expand/collapse =====
+document.querySelectorAll('#experience .timeline-item').forEach((item) => {
+  if (!item.querySelector('.exp-details')) return;
+
+  const toggle = () => {
+    const isOpen = item.classList.toggle('open');
+    item.setAttribute('aria-expanded', String(isOpen));
+  };
+
+  item.addEventListener('click', toggle);
+  item.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle();
+    }
+  });
+});
+
+// ===== Work section tag filters =====
+(function initWorkFilters() {
+  const filtersContainer = document.getElementById('workFilters');
+  const projectsGrid = document.querySelector('.projects-grid');
+  if (!filtersContainer || !projectsGrid) return;
+
+  const projectCards = Array.from(projectsGrid.querySelectorAll('.project-card[data-pid]'));
+  const tags = [];
+  projectCards.forEach((card) => {
+    const cardTags = Array.from(card.querySelectorAll('.project-tags .tag')).map((t) => t.textContent.trim());
+    card.dataset.tags = JSON.stringify(cardTags);
+    cardTags.forEach((tag) => {
+      if (!tags.includes(tag)) tags.push(tag);
+    });
+  });
+  tags.sort();
+
+  function setActive(btn) {
+    filtersContainer.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function applyFilter(tag) {
+    projectCards.forEach((card) => {
+      const cardTags = JSON.parse(card.dataset.tags);
+      const show = tag === 'All' || cardTags.includes(tag);
+      card.classList.toggle('hidden', !show);
+    });
+  }
+
+  function createFilterBtn(label, isAll) {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn mono' + (isAll ? ' active' : '');
+    btn.type = 'button';
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      setActive(btn);
+      applyFilter(label);
+    });
+    return btn;
+  }
+
+  filtersContainer.appendChild(createFilterBtn('All', true));
+  tags.forEach((tag) => filtersContainer.appendChild(createFilterBtn(tag, false)));
+})();
+
 // ===== Mobile menu =====
 const navBurger = document.getElementById('navBurger');
 const mobileMenu = document.getElementById('mobileMenu');
