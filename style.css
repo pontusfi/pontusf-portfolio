@@ -667,6 +667,92 @@ a {
   line-height: 1.55;
 }
 
+/* ===== Career & Experience (card variant) ===== */
+.timeline-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.timeline-cards .timeline-item {
+  border-left: none;
+  margin-left: 0;
+  padding: 26px 28px 26px 60px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.timeline-cards .timeline-item:last-child {
+  padding-bottom: 26px;
+}
+.timeline-cards .timeline-item:hover {
+  border-color: rgba(240, 168, 96, 0.35);
+  transform: translateX(4px);
+}
+
+.timeline-cards .timeline-dot {
+  left: 26px;
+  top: 28px;
+  border-radius: 4px;
+  transform: rotate(45deg);
+}
+.timeline-cards .timeline-dot.current {
+  left: 25px;
+  top: 27px;
+}
+
+.exp-badge {
+  position: absolute;
+  top: 24px;
+  right: 52px;
+  font-size: 10px;
+  color: #1a1206;
+  background: var(--accent);
+  padding: 4px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+}
+
+.timeline-cards .timeline-item {
+  cursor: pointer;
+}
+
+.exp-chevron {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--muted-faint);
+  transition: transform 0.3s ease, color 0.2s ease;
+}
+
+.timeline-cards .timeline-item:hover .exp-chevron {
+  color: var(--accent);
+}
+
+.timeline-cards .timeline-item.open .exp-chevron {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.exp-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted-soft);
+  transition: max-height 0.4s cubic-bezier(.16,1,.3,1), opacity 0.3s ease, margin-top 0.4s ease;
+}
+
+.timeline-cards .timeline-item.open .exp-details {
+  max-height: 320px;
+  opacity: 1;
+  margin-top: 14px;
+}
+
 /* ===== Work ===== */
 .work-section {
   max-width: 1280px;
@@ -699,10 +785,42 @@ a {
   color: var(--muted-faint);
 }
 
+.work-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 32px;
+}
+
+.filter-btn {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--tag-text);
+  background: rgba(245, 235, 225, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.filter-btn:hover {
+  border-color: rgba(240, 168, 96, 0.4);
+  color: var(--accent);
+}
+.filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1a1206;
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 20px;
+}
+
+.project-card.hidden {
+  display: none;
 }
 
 .project-card {
