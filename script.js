@@ -8,15 +8,15 @@ const projects = {
     screens: ["assets/delay_pred.jpg"],
     tags: ["Machine Learning", "AI", "Python", "PyTorch", "NumPy", "Research"],
     features: [
-      "Pre-process a real-world dataset and enrich it with external information.",
-      "Implement machine learning models from several different model families.",
-      "Run an extensive comparative analysis across feature representation and engineering strategies."
+      "Pre-processed a real-world dataset and enriched it with external information.",
+      "Implemented machine learning models from several different model families.",
+      "Ran an extensive comparative analysis across feature representation and engineering strategies."
     ],
-    role: "This is my Master's thesis project, aimed to be completed by early June 2026. I'm responsible for the full pipeline — data preparation, model implementation, and the comparative evaluation of delay-prediction approaches.",
+    role: "This was my Master's thesis project, completed in June 2026. I was responsible for the full pipeline — data preparation, model implementation, and the comparative evaluation of delay-prediction approaches.",
     github: null,
     pdf: null,
-    inProgress: true,
-    status: "IN PROGRESS · 2026"
+    inProgress: false,
+    status: ""
   },
   'ea-seed': {
     category: "EA SEED · LLM + REINFORCEMENT LEARNING",
