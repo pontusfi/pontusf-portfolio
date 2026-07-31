@@ -361,7 +361,7 @@ document.getElementById('overlayBackBottom').addEventListener('click', closeProj
   resize();
   window.addEventListener('resize', resize);
 
-  const N = 40;
+  const N = 44;
   const nodes = [];
   for (let i = 0; i < N; i++) {
     nodes.push({
@@ -408,7 +408,7 @@ document.getElementById('overlayBackBottom').addEventListener('click', closeProj
         const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
         const d = Math.hypot(dx, dy);
         if (d < D) {
-          const a = (1 - d / D) * 0.45;
+          const a = (1 - d / D) * 0.5;
           ctx.strokeStyle = 'rgba(240,168,96,' + a + ')';
           ctx.lineWidth = 0.6;
           ctx.beginPath();
@@ -451,4 +451,193 @@ document.getElementById('overlayBackBottom').addEventListener('click', closeProj
     requestAnimationFrame(draw);
   }
   draw();
+})();
+
+// ===== Interactive hero terminal =====
+(function initCli() {
+  const cli = document.getElementById('cli');
+  const log = document.getElementById('cliLog');
+  const form = document.getElementById('cliForm');
+  const input = document.getElementById('cliInput');
+  if (!cli || !log || !form || !input) return;
+
+  const sections = {
+    about: 'About — background, stack and what I work on',
+    education: 'Education — KTH, B.Sc. Media Technology & M.Sc. Computer Science',
+    experience: 'Experience — roles, positions and what I did there',
+    work: 'Work — selected projects, filterable by tag',
+    contact: 'Contact — email and links',
+    top: 'Top — back to the start'
+  };
+  const names = Object.keys(sections);
+  const commands = ['help', 'ls', 'cd', 'whoami', 'open', 'clear'];
+
+  function print(text, cls) {
+    const line = document.createElement('div');
+    line.className = 'cli-line' + (cls ? ' ' + cls : '');
+    line.textContent = text;
+    log.appendChild(line);
+    log.scrollTop = log.scrollHeight;
+    return line;
+  }
+
+  function goTo(id) {
+    const el = document.getElementById(id);
+    if (!el) return false;
+    print('→ ' + id, 'cli-dim');
+    // Let the line paint before the scroll starts.
+    requestAnimationFrame(() => {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return true;
+  }
+
+  function resolve(word) {
+    if (!word) return null;
+    const w = word.replace(/^\.?\/*/, '').replace(/\/+$/, '').toLowerCase();
+    if (w === 'home' || w === '~' || w === '..') return 'top';
+    if (names.indexOf(w) !== -1) return w;
+    const hits = names.filter((n) => n.indexOf(w) === 0);
+    return hits.length === 1 ? hits[0] : null;
+  }
+
+  function run(raw) {
+    const line = raw.trim();
+    if (!line) return;
+    print('visitor@portfolio:~$ ' + line, 'cli-echo');
+
+    const parts = line.split(/\s+/);
+    const cmd = parts[0].toLowerCase();
+    const arg = parts.slice(1).join(' ');
+
+    if (cmd === 'clear') {
+      log.innerHTML = '';
+      return;
+    }
+    if (cmd === 'help') {
+      print('cd <section>   jump to a section of the page');
+      print('ls             list the sections');
+      print('open <name>    open a project from the work grid');
+      print('whoami         short bio');
+      print('clear          clear this log');
+      print('shortcut: just type a section name, e.g. "work"', 'cli-dim');
+      return;
+    }
+    if (cmd === 'ls') {
+      names.forEach((n) => print(n.padEnd(12) + sections[n], 'cli-dim'));
+      return;
+    }
+    if (cmd === 'whoami') {
+      print('Pontus Filén — AI · Machine Learning Engineer, Stockholm.');
+      print('M.Sc. Computer Science, KTH (2026). Currently at Solvigo AB.');
+      return;
+    }
+    if (cmd === 'open') {
+      const cards = Array.from(document.querySelectorAll('.project-card[data-pid]'));
+      const key = arg.toLowerCase().replace(/\s+/g, '');
+      if (!key) {
+        print('open: name a project — ' + cards.map((c) => c.getAttribute('data-pid')).join(', '), 'cli-dim');
+        return;
+      }
+      const card = cards.find((c) => c.getAttribute('data-pid').toLowerCase().indexOf(key) === 0);
+      if (card) {
+        print('opening ' + card.getAttribute('data-pid') + '…', 'cli-dim');
+        card.click();
+      } else {
+        print('open: no project matching "' + arg + '" — try `open` on its own to list them', 'cli-err');
+      }
+      return;
+    }
+    if (cmd === 'cd') {
+      const target = resolve(arg);
+      if (target) goTo(target);
+      else print('cd: no such section: ' + (arg || '(nothing)'), 'cli-err');
+      return;
+    }
+
+    const bare = resolve(cmd);
+    if (bare) { goTo(bare); return; }
+    print('command not found: ' + cmd + " — try 'help'", 'cli-err');
+  }
+
+  // --- history ---
+  const history = [];
+  let hIndex = -1;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const value = input.value;
+    if (value.trim()) {
+      history.push(value.trim());
+      hIndex = history.length;
+    }
+    input.value = '';
+    run(value);
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowUp') {
+      if (!history.length) return;
+      e.preventDefault();
+      hIndex = Math.max(0, hIndex - 1);
+      input.value = history[hIndex];
+    } else if (e.key === 'ArrowDown') {
+      if (!history.length) return;
+      e.preventDefault();
+      hIndex = Math.min(history.length, hIndex + 1);
+      input.value = hIndex === history.length ? '' : history[hIndex];
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
+      const parts = input.value.split(/\s+/);
+      const last = (parts[parts.length - 1] || '').toLowerCase();
+      const pool = parts.length > 1 ? names : commands.concat(names);
+      const hits = pool.filter((c) => c.indexOf(last) === 0);
+      if (hits.length === 1) {
+        parts[parts.length - 1] = hits[0];
+        input.value = parts.join(' ') + (parts.length === 1 && hits[0] === 'cd' ? ' ' : '');
+      } else if (hits.length > 1) {
+        print(hits.join('  '), 'cli-dim');
+      }
+    }
+  });
+
+  // Clicking anywhere in the strip focuses the prompt.
+  cli.addEventListener('mousedown', (e) => {
+    if (e.target.closest('.cli-chip') || e.target === input) return;
+    e.preventDefault();
+    input.focus();
+  });
+
+  cli.querySelectorAll('.cli-chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      input.focus();
+      run(chip.getAttribute('data-cmd'));
+    });
+  });
+
+  // Idle placeholder that types out a rotating suggestion.
+  const suggestions = ['cd work', 'ls', 'whoami', 'cd contact', 'help'];
+  let sIndex = 0, cIndex = 0, erasing = false, idleTimer = null;
+
+  function tick() {
+    if (document.activeElement === input || input.value) {
+      input.placeholder = '';
+      idleTimer = setTimeout(tick, 900);
+      return;
+    }
+    const text = suggestions[sIndex];
+    input.placeholder = text.slice(0, cIndex) + (erasing ? '' : '▍');
+    if (!erasing && cIndex < text.length) cIndex++;
+    else if (!erasing) { erasing = true; idleTimer = setTimeout(tick, 1600); return; }
+    else if (cIndex > 0) cIndex = Math.max(0, cIndex - 2);
+    else { erasing = false; cIndex = 0; sIndex = (sIndex + 1) % suggestions.length; }
+    idleTimer = setTimeout(tick, erasing ? 34 : 78);
+  }
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    idleTimer = setTimeout(tick, 1400);
+  } else {
+    input.placeholder = 'type help';
+  }
+  input.addEventListener('focus', () => { input.placeholder = ''; });
 })();
