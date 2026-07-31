@@ -1,9 +1,29 @@
 // ===== Project data =====
 const projects = {
+  'studio': {
+    category: "ASHFALL STUDIO · FULL-STACK PRODUCT",
+    title: "Ashfall Studio: project management for music producers",
+    subtitle: "Built around the way records actually get made: releases → tracks → tasks, with a fixed six-stage production pipeline driving every view.",
+    overview: "Most general-purpose project-management tools make you invent a workflow. Music production already has one, so Ashfall Studio hardcodes it: every track moves through Pre-production → Tracking → Editing → Mixing → Mastering → Delivered, and that single axis drives the whole UI. The project is in its early stages, but the foundation is in place.",
+    screens: ["assets/studio.png"],
+    tags: ["React", "TypeScript", "Supabase", "Postgres", "TanStack Query", "Tailwind CSS"],
+    features: [
+      "A fixed six-stage pipeline drives every view: progress rings, pipeline board, stage matrix, and stage-filtered task boards.",
+      "Invariants live in Postgres rather than the client, with multi-step operations as RPC functions so they commit as one transaction.",
+      "Multi-tenant from day one, with row-level security as the actual security boundary rather than a client-side check.",
+      "A dark-first design system built on CSS custom properties, re-theming to light at runtime."
+    ],
+    role: "I'm building Ashfall Studio solo: schema design, migrations, security policies, and the front end. It's early, so the current focus is getting the foundations right before adding surface area. Track versions, threaded feedback, and file attachments are already modelled in the schema and waiting on UI. Development is AI-assisted, with Claude Code used alongside code I write and review myself.",
+    github: null,
+    pdf: null,
+    inProgress: true,
+    status: "IN PROGRESS · 2026",
+    aiAssisted: true
+  },
   'masters-thesis': {
     category: "MASTER'S THESIS · APPLIED ML IN LOGISTICS",
     title: "Predicting transport delays in courier logistics using machine learning",
-    subtitle: "Data-driven delay prediction on real operational data — identifying the factors that most strongly influence service reliability.",
+    subtitle: "Data-driven delay prediction on real operational data, identifying the factors that most strongly influence service reliability.",
     overview: "This project sits within the broader research area of applied machine learning in logistics and operations research. It explores how historical operational data from Jetpak can be used to predict transport delays and surface the underlying factors that most strongly influence performance, with the goal of improving service reliability through data-driven optimization.",
     screens: ["assets/delay_pred.jpg"],
     tags: ["Machine Learning", "AI", "Python", "PyTorch", "NumPy", "Research"],
@@ -12,7 +32,7 @@ const projects = {
       "Implemented machine learning models from several different model families.",
       "Ran an extensive comparative analysis across feature representation and engineering strategies."
     ],
-    role: "This was my Master's thesis project, completed in June 2026. I was responsible for the full pipeline — data preparation, model implementation, and the comparative evaluation of delay-prediction approaches.",
+    role: "This was my Master's thesis project, completed in June 2026. I was responsible for the full pipeline: data preparation, model implementation, and the comparative evaluation of delay-prediction approaches.",
     github: null,
     pdf: null,
     inProgress: false,
@@ -20,7 +40,7 @@ const projects = {
   },
   'ea-seed': {
     category: "EA SEED · LLM + REINFORCEMENT LEARNING",
-    title: "EA SEED — Hierarchical AI for smarter NPCs",
+    title: "EA SEED: Hierarchical AI for smarter NPCs",
     subtitle: "Combining the strategic strengths of LLMs with the fast reflexes of RL to create smarter, more adaptive NPCs.",
     overview: "The goal of this project is to develop intelligent, adaptive NPCs for games by combining Reinforcement Learning with Large Language Models in a hierarchical system. RL agents handle fast, low-level behaviors such as navigation and combat, while the LLM oversees strategic decision-making and orchestrates which RL agents to activate based on the game state.",
     screens: ["assets/easeedscreenshot.png"],
@@ -48,7 +68,7 @@ const projects = {
       "Conducted a user study using the custom test environment.",
       "Analysed results using both qualitative and quantitative methods."
     ],
-    role: "Early on I focused on getting our Unity test game working to spec — mainly the level design for the test levels. The initial phase also involved extensive research into UI and audio in games and their role in player experience. The rest of the time went to running the user studies, analysing results, and composing the final report.",
+    role: "Early on I focused on getting our Unity test game working to spec, mainly the level design for the test levels. The initial phase also involved extensive research into UI and audio in games and their role in player experience. The rest of the time went to running the user studies, analysing results, and composing the final report.",
     github: "https://github.com/pontusfi/KEX/tree/master",
     pdf: "assets/FULLTEXT01.pdf",
     inProgress: false,
@@ -56,7 +76,7 @@ const projects = {
   },
   'rnn-lstm': {
     category: "DEEP LEARNING · NLP",
-    title: "RNN and LSTM — Text Synthesis",
+    title: "RNN and LSTM Text Synthesis",
     subtitle: "Evaluating and comparing a vanilla RNN against an LSTM for character-level text synthesis.",
     overview: "This project explores Recurrent Neural Networks and Long Short-Term Memory networks for character-level text generation, using a dataset of Shakespeare's plays. We implemented both a vanilla RNN and an LSTM and compared training, validation and test losses as well as generated-text quality. Hyperparameters were optimized via grid search, and we investigated the impact of hidden-state dimensionality. Evaluation combined quantitative metrics like n-gram accuracy and spelling correctness with qualitative reading. The results show LSTMs outperform vanilla RNNs at capturing long-range dependencies.",
     screens: ["assets/LSTM_1_layer_loss_plot.png", "assets/synthesizedtext.png"],
@@ -66,7 +86,7 @@ const projects = {
       "Implemented word2vec and BPE tokenization.",
       "Searched, tuned and evaluated hyperparameters via grid search."
     ],
-    role: "I deepened my use of PyTorch for this task — having previously implemented an RNN from scratch in pure Python (forward pass and backprop), here I built the network in PyTorch and adapted it to our project, including the text-synthesis functionality. I also worked extensively on hyperparameter analysis: implementing a grid search, choosing which parameters and values to explore, and analysing training performance to decide on epoch counts. Along the way I gained a much better understanding of LSTMs and of how hidden-layer dimensionality affects results.",
+    role: "I deepened my use of PyTorch for this task. Having previously implemented an RNN from scratch in pure Python (forward pass and backprop), here I built the network in PyTorch and adapted it to our project, including the text-synthesis functionality. I also worked extensively on hyperparameter analysis: implementing a grid search, choosing which parameters and values to explore, and analysing training performance to decide on epoch counts. Along the way I gained a much better understanding of LSTMs and of how hidden-layer dimensionality affects results.",
     github: "https://github.com/HaraldHR/NLP_Project",
     pdf: "assets/NLP_Project_Report.pdf",
     inProgress: false,
@@ -75,7 +95,7 @@ const projects = {
   'movieline': {
     category: "WEB · FULL-STACK",
     title: "Movieline",
-    subtitle: "A web-based interactive timeline game — place as many movies in the correct order as you can.",
+    subtitle: "A web-based interactive timeline game: place as many movies in the correct order as you can.",
     overview: "Movieline is a web-based interactive timeline game where the goal is to place as many movies as possible in the correct chronological order. We built it in React with Vite and used Firebase to handle user data.",
     screens: ["assets/movieline.PNG", "assets/movieline_screen1.png", "assets/movieline_screen2.png"],
     tags: ["React", "Firebase", "JavaScript", "HTML", "CSS"],
@@ -85,7 +105,7 @@ const projects = {
       "Built the app in React following the Model-View-Presenter architecture.",
       "Persisted user data in a Firebase database."
     ],
-    role: "I focused heavily on the Presenters and Views within the MVP architecture, keeping a clean separation of concerns. I implemented much of the routing logic and the React Router setup for seamless navigation, and I was responsible for data persistence with Firebase — configuring the backend and implementing storing and retrieving data from the database.",
+    role: "I focused heavily on the Presenters and Views within the MVP architecture, keeping a clean separation of concerns. I implemented much of the routing logic and the React Router setup for seamless navigation, and I was responsible for data persistence with Firebase, configuring the backend and implementing storing and retrieving data from the database.",
     github: "https://gits-15.sys.kth.se/pfilen/movieline_project_group_47",
     pdf: null,
     inProgress: false,
@@ -99,11 +119,11 @@ const projects = {
     screens: ["assets/ciserverscreenshot.png"],
     tags: ["Java", "Maven", "JavaScript", "Webhooks", "Ngrok", "HTML", "CSS"],
     features: [
-      "Webhook integration — triggers builds on new commits pushed to GitHub.",
-      "Automated build execution — compiles and tests code on each trigger.",
-      "Commit status reporting — sends build results back to the repository via REST."
+      "Webhook integration: triggers builds on new commits pushed to GitHub.",
+      "Automated build execution: compiles and tests code on each trigger.",
+      "Commit status reporting: sends build results back to the repository via REST."
     ],
-    role: "I was responsible for the commit status reporting feature, integrating with the GitHub REST API to programmatically set each commit's status based on build results — giving clear feedback directly inside the repository. I also wrote unit tests to verify the correctness and reliability of this functionality, ensuring accurate status updates and robust error handling.",
+    role: "I was responsible for the commit status reporting feature, integrating with the GitHub REST API to programmatically set each commit's status based on build results, giving clear feedback directly inside the repository. I also wrote unit tests to verify the correctness and reliability of this functionality, ensuring accurate status updates and robust error handling.",
     github: "https://github.com/Soffan-Group-3/CD-Server",
     pdf: null,
     inProgress: false,
@@ -221,6 +241,8 @@ revealEls.forEach((el) => io.observe(el));
 const overlay = document.getElementById('projectOverlay');
 const overlayHeaderCategory = document.getElementById('overlayHeaderCategory');
 const overlayStatus = document.getElementById('overlayStatus');
+const overlayStatusRow = document.getElementById('overlayStatusRow');
+const overlayAi = document.getElementById('overlayAi');
 const overlayCategory = document.getElementById('overlayCategory');
 const overlayTitle = document.getElementById('overlayTitle');
 const overlaySubtitle = document.getElementById('overlaySubtitle');
@@ -248,6 +270,9 @@ function openProject(id) {
   } else {
     overlayStatus.style.display = 'none';
   }
+
+  overlayAi.style.display = p.aiAssisted ? 'inline-block' : 'none';
+  overlayStatusRow.style.display = (p.inProgress || p.aiAssisted) ? 'flex' : 'none';
 
   overlayTags.innerHTML = '';
   p.tags.forEach((tag) => {
