@@ -48,42 +48,72 @@
 
   <!-- Hero -->
   <section id="top" class="hero">
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div class="hero-badge mono">
-          <span class="hero-badge-dot"></span>
-          AI · MACHINE LEARNING ENGINEER
-        </div>
-        <h1 class="hero-title">
-          Engineering <span class="accent">intelligent systems</span> for real-world impact.
-        </h1>
-        <p class="hero-text">
-          I'm Pontus Filén, an AI engineer and former MSc Computer Science student at KTH, specializing in Data Science, Machine Learning &amp; AI. I love exploring how intelligent systems can shape the future!
-        </p>
-        <div class="hero-actions">
-          <a href="#work" class="btn-primary">View work <span>→</span></a>
-          <a href="#contact" class="btn-secondary">Get in touch</a>
-        </div>
-        <div class="hero-meta mono">
-          <span>◷&nbsp; STOCKHOLM, SE</span>
-          <span>◇&nbsp; Solvigo AB</span>
-          <span class="available">●&nbsp; 2026</span>
-        </div>
+    <div class="hero-stage">
+      <canvas id="neuralField"></canvas>
+      <div class="hero-vignette"></div>
+
+      <div class="hero-field-label mono">
+        <span class="hero-field-dot"></span>
+        neural_field.live
       </div>
 
-      <div class="hero-panel">
-        <canvas id="neuralField"></canvas>
-        <span class="panel-corner tl"></span>
-        <span class="panel-corner tr"></span>
-        <span class="panel-corner bl"></span>
-        <span class="panel-corner br"></span>
-        <div class="panel-label mono">
-          <span class="panel-label-dot"></span>
-          neural_field.live
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot accent"></span>
+          <span class="terminal-path mono">pontus@kth — ~/portfolio</span>
         </div>
-        <div class="panel-footer mono">
-          <span>move cursor to perturb the field</span>
-          <span>n=40</span>
+
+        <div class="terminal-body">
+          <div class="terminal-lines">
+            <div class="terminal-block">
+              <div class="terminal-prompt mono"><span class="accent">$</span> whoami</div>
+              <div class="terminal-name">Pontus <span class="accent">Filén</span></div>
+              <div class="terminal-role mono">AI · MACHINE LEARNING ENGINEER</div>
+            </div>
+            <div class="terminal-block">
+              <div class="terminal-prompt mono"><span class="accent">$</span> cat focus.txt</div>
+              <div class="terminal-out">LLM-orchestrated agents · reinforcement learning · predictive models for real-world logistics</div>
+            </div>
+            <div class="terminal-block">
+              <div class="terminal-prompt mono"><span class="accent">$</span> ls ./education</div>
+              <div class="terminal-out">M.Sc. Computer Science — KTH, 2026<span class="terminal-caret"></span></div>
+            </div>
+          </div>
+
+          <div class="terminal-photo">
+            <img src="assets/psx2_hero.jpg" alt="Pontus Filén" width="800" height="1000" />
+          </div>
+        </div>
+
+        <div class="terminal-cli" id="cli">
+          <div class="cli-log mono" id="cliLog" aria-live="polite">
+            <div class="cli-line cli-dim">type <b>help</b> and hit enter — or pick a command below</div>
+          </div>
+          <form class="cli-row" id="cliForm" autocomplete="off">
+            <label class="cli-prompt mono" for="cliInput">visitor@portfolio:~$</label>
+            <input class="cli-input mono" id="cliInput" type="text" spellcheck="false"
+                   autocomplete="off" aria-label="Terminal command input" />
+          </form>
+          <div class="cli-chips">
+            <button type="button" class="cli-chip mono" data-cmd="help">help</button>
+            <button type="button" class="cli-chip mono" data-cmd="cd about">cd about</button>
+            <button type="button" class="cli-chip mono" data-cmd="cd work">cd work</button>
+            <button type="button" class="cli-chip mono" data-cmd="cd education">cd education</button>
+            <button type="button" class="cli-chip mono" data-cmd="cd experience">cd experience</button>
+            <button type="button" class="cli-chip mono" data-cmd="cd contact">cd contact</button>
+          </div>
+        </div>
+
+        <div class="terminal-actions">
+          <a href="#work" class="btn-primary">View work <span>→</span></a>
+          <a href="#contact" class="btn-secondary">Get in touch</a>
+          <div class="terminal-meta mono">
+            <span>◷&nbsp; STOCKHOLM, SE</span>
+            <span>◇&nbsp; Solvigo AB</span>
+            <span class="available">●&nbsp; 2026</span>
+          </div>
         </div>
       </div>
     </div>
