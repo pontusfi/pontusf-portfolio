@@ -614,6 +614,129 @@ a {
   background: rgba(240, 168, 96, 0.1);
 }
 
+/* Touch router — the phone counterpart to the CLI. Hidden until 620px, where
+   it takes over from both the prompt and the button row. */
+.terminal-router {
+  display: none;
+  padding: 12px 18px 16px;
+  border-top: 1px solid rgba(245, 235, 225, 0.07);
+  background: rgba(245, 235, 225, 0.015);
+}
+
+.router-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--muted-faint);
+}
+
+.router-model {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted-dimmer);
+}
+
+.router-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #8fae7a;
+  box-shadow: 0 0 8px rgba(143, 174, 122, 0.8);
+  animation: blink 1.9s infinite;
+}
+
+.router-out {
+  margin: 9px 0 12px;
+  /* Two lines reserved so a streaming message never shifts the rows below. */
+  min-height: 33px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--muted-soft);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.router-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.router-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  /* 44px keeps every row a comfortable touch target. */
+  min-height: 44px;
+  padding: 0 13px;
+  border: 1px solid rgba(245, 235, 225, 0.1);
+  border-radius: 10px;
+  background: rgba(245, 235, 225, 0.025);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.router-row.is-primary {
+  border-color: rgba(240, 168, 96, 0.42);
+}
+
+.router-row.is-primary .router-label {
+  color: var(--accent);
+}
+
+.router-row.is-active {
+  border-color: rgba(240, 168, 96, 0.7);
+}
+
+/* Probability bar. Width is driven from JS; the transition does the easing. */
+.router-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: linear-gradient(90deg, rgba(240, 168, 96, 0.24), rgba(240, 168, 96, 0.05));
+  border-right: 1px solid rgba(240, 168, 96, 0.28);
+  transition: width 0.55s cubic-bezier(0.22, 0.9, 0.24, 1);
+  pointer-events: none;
+}
+
+.router-idx,
+.router-label,
+.router-prob {
+  position: relative;
+  z-index: 1;
+}
+
+.router-idx {
+  font-size: 10px;
+  color: var(--muted-faint);
+  letter-spacing: 0.08em;
+}
+
+.router-label {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.router-prob {
+  font-size: 11px;
+  color: var(--muted-dimmer);
+  font-variant-numeric: tabular-nums;
+}
+
 .terminal-actions {
   display: flex;
   flex-wrap: wrap;
@@ -813,43 +936,15 @@ a {
     margin-left: 7px;
     vertical-align: -3px;
   }
+  /* A text prompt on a phone means a keyboard over the page. The router
+     replaces it, and absorbs the button row's destinations too. */
   .terminal-cli {
-    padding: 14px 18px 16px;
-  }
-  .cli-log {
-    min-height: 24px;
-    max-height: 84px;
-    font-size: 12px;
-  }
-  /* One swipeable row instead of three wrapped ones — keeps every command
-     reachable without the chips owning a third of the card. */
-  .cli-chips {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    margin-top: 12px;
-    padding-bottom: 2px;
-  }
-  .cli-chips::-webkit-scrollbar {
     display: none;
   }
-  .cli-chip {
-    flex-shrink: 0;
+  .terminal-router {
+    display: block;
   }
   .terminal-actions {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    padding: 18px;
-  }
-  .terminal-actions .btn-primary,
-  .terminal-actions .btn-secondary {
-    width: 100%;
-    justify-content: center;
-    padding: 15px 20px;
-  }
-  /* Location / availability now live in the avatar row. */
-  .terminal-meta {
     display: none;
   }
 }

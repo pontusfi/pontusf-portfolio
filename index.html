@@ -116,6 +116,47 @@
           </div>
         </div>
 
+        <!-- Touch stand-in for the CLI: same job, no keyboard. Phones only. -->
+        <div class="terminal-router" id="router">
+          <div class="router-head mono">
+            <span class="router-model"><span class="router-dot"></span>pf-router</span>
+            <span class="router-hint">tap a route</span>
+          </div>
+          <div class="router-out mono" id="routerOut">idle — sampling attention over 5 sections</div>
+          <div class="router-rows">
+            <button type="button" class="router-row" data-target="about">
+              <span class="router-fill"></span>
+              <span class="router-idx mono" aria-hidden="true">01</span>
+              <span class="router-label">about</span>
+              <span class="router-prob mono" aria-hidden="true">0.00</span>
+            </button>
+            <button type="button" class="router-row" data-target="education">
+              <span class="router-fill"></span>
+              <span class="router-idx mono" aria-hidden="true">02</span>
+              <span class="router-label">education</span>
+              <span class="router-prob mono" aria-hidden="true">0.00</span>
+            </button>
+            <button type="button" class="router-row" data-target="experience">
+              <span class="router-fill"></span>
+              <span class="router-idx mono" aria-hidden="true">03</span>
+              <span class="router-label">experience</span>
+              <span class="router-prob mono" aria-hidden="true">0.00</span>
+            </button>
+            <button type="button" class="router-row is-primary" data-target="work">
+              <span class="router-fill"></span>
+              <span class="router-idx mono" aria-hidden="true">04</span>
+              <span class="router-label">work</span>
+              <span class="router-prob mono" aria-hidden="true">0.00</span>
+            </button>
+            <button type="button" class="router-row" data-target="contact">
+              <span class="router-fill"></span>
+              <span class="router-idx mono" aria-hidden="true">05</span>
+              <span class="router-label">contact</span>
+              <span class="router-prob mono" aria-hidden="true">0.00</span>
+            </button>
+          </div>
+        </div>
+
         <div class="terminal-actions">
           <a href="#work" class="btn-primary">View work <span>→</span></a>
           <a href="#contact" class="btn-secondary">Get in touch</a>
