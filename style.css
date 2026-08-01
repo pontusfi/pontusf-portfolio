@@ -258,40 +258,6 @@ a {
   }
 }
 
-/* Terminal hero — narrow layout */
-@media (max-width: 760px) {
-  .hero-stage {
-    padding: 92px 16px 96px;
-  }
-  .hero-field-label {
-    top: 76px;
-  }
-  .terminal-body {
-    flex-direction: column-reverse;
-    align-items: stretch;
-    gap: 28px;
-  }
-  .terminal-photo {
-    width: clamp(170px, 50vw, 250px);
-    align-self: flex-start;
-  }
-  .terminal-cli {
-    padding: 16px 18px 18px;
-  }
-  .cli-log {
-    max-height: 92px;
-  }
-  .cli-prompt,
-  .cli-input {
-    font-size: 13px;
-  }
-  .terminal-meta {
-    margin-left: 0;
-    width: 100%;
-    gap: 14px;
-  }
-}
-
 /* ===== Hero (terminal) ===== */
 .hero {
   position: relative;
@@ -452,6 +418,49 @@ a {
   margin-left: 9px;
   vertical-align: -4px;
   animation: caret 1.1s step-end infinite;
+}
+
+/* Stands in for the education caret once that block drops out on phones. */
+.caret-mobile {
+  display: none;
+}
+
+/* Compact identity row: replaces the portrait on phones, where a tall 4:5
+   image would push everything below the fold. */
+.terminal-avatar {
+  display: none;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 15px;
+}
+
+.terminal-avatar-img {
+  display: block;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(240, 168, 96, 0.45);
+  box-shadow: 0 0 22px rgba(240, 168, 96, 0.14);
+}
+
+.terminal-avatar-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.terminal-avatar-meta {
+  font-size: 11px;
+  line-height: 1.55;
+  letter-spacing: 0.1em;
+  color: var(--muted-dimmer);
+}
+
+.terminal-avatar-meta .available {
+  color: #8fae7a;
 }
 
 .terminal-photo {
@@ -709,6 +718,140 @@ a {
   background: var(--accent);
   transform: translateX(-50%);
   animation: scrolldown 1.7s infinite;
+}
+
+/* Terminal hero — tablet / small laptop. Portrait stays beside the copy. */
+@media (max-width: 760px) {
+  .hero-stage {
+    padding: 92px 16px 96px;
+  }
+  .hero-field-label {
+    top: 76px;
+  }
+  .terminal-cli {
+    padding: 16px 18px 18px;
+  }
+  .cli-log {
+    max-height: 92px;
+  }
+  .cli-prompt,
+  .cli-input {
+    font-size: 13px;
+  }
+  .terminal-meta {
+    margin-left: 0;
+    width: 100%;
+    gap: 14px;
+  }
+}
+
+/* Terminal hero — phones. Mirrors the design's 620px breakpoint: the window
+   goes single-column, the portrait is swapped for the inline avatar, and the
+   education line drops so the whole card still fits one screen. */
+@media (max-width: 620px) {
+  .hero-stage {
+    /* The design pins the card to the top here; we keep the base `center`
+       instead, since the trimmed card fits the viewport. If it ever outgrows
+       100vh the stage just grows and centering becomes a no-op — no clipping. */
+    padding: 88px 14px 76px;
+  }
+  .hero-field-label {
+    top: 72px;
+    left: 18px;
+  }
+  .terminal {
+    border-radius: 14px;
+  }
+  .terminal-bar {
+    gap: 9px;
+    padding: 12px 14px;
+  }
+  .terminal-dot {
+    width: 9px;
+    height: 9px;
+  }
+  .terminal-path {
+    font-size: 11px;
+    margin-left: 6px;
+  }
+  .terminal-body {
+    flex-direction: column;
+    gap: 20px;
+    padding: 22px 18px;
+  }
+  .terminal-lines {
+    gap: 20px;
+  }
+  .terminal-photo {
+    display: none;
+  }
+  .terminal-avatar {
+    display: flex;
+  }
+  .terminal-name {
+    font-size: 44px;
+    line-height: 0.94;
+  }
+  .terminal-role {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    margin-top: 0;
+  }
+  .terminal-prompt {
+    font-size: 13px;
+  }
+  .terminal-out {
+    font-size: 15px;
+  }
+  .terminal-edu {
+    display: none;
+  }
+  .caret-mobile {
+    display: inline-block;
+    width: 7px;
+    height: 15px;
+    margin-left: 7px;
+    vertical-align: -3px;
+  }
+  .terminal-cli {
+    padding: 14px 18px 16px;
+  }
+  .cli-log {
+    min-height: 24px;
+    max-height: 84px;
+    font-size: 12px;
+  }
+  /* One swipeable row instead of three wrapped ones — keeps every command
+     reachable without the chips owning a third of the card. */
+  .cli-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-top: 12px;
+    padding-bottom: 2px;
+  }
+  .cli-chips::-webkit-scrollbar {
+    display: none;
+  }
+  .cli-chip {
+    flex-shrink: 0;
+  }
+  .terminal-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 18px;
+  }
+  .terminal-actions .btn-primary,
+  .terminal-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 20px;
+  }
+  /* Location / availability now live in the avatar row. */
+  .terminal-meta {
+    display: none;
+  }
 }
 
 /* ===== Section shared ===== */
