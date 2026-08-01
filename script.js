@@ -615,7 +615,8 @@ document.getElementById('overlayBackBottom').addEventListener('click', closeProj
     });
   });
 
-  // Idle placeholder that types out a rotating suggestion.
+  // Idle placeholder that types out a rotating suggestion. Phones get the
+  // touch router instead, so the timer stays parked there.
   const suggestions = ['cd work', 'ls', 'whoami', 'cd contact', 'help'];
   let sIndex = 0, cIndex = 0, erasing = false, idleTimer = null;
 
@@ -634,10 +635,123 @@ document.getElementById('overlayBackBottom').addEventListener('click', closeProj
     idleTimer = setTimeout(tick, erasing ? 34 : 78);
   }
 
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const phone = window.matchMedia('(max-width: 620px)');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function startIdle() {
+    clearTimeout(idleTimer);
+    if (still.matches || phone.matches) {
+      input.placeholder = 'type help';
+      return;
+    }
     idleTimer = setTimeout(tick, 1400);
-  } else {
-    input.placeholder = 'type help';
   }
+
+  startIdle();
+  if (phone.addEventListener) phone.addEventListener('change', startIdle);
   input.addEventListener('focus', () => { input.placeholder = ''; });
+})();
+
+/* Touch router — what the CLI turns into on a phone, where a text prompt
+   just means a keyboard covering the page. Same destinations, one tap each,
+   dressed as a model sampling over them. */
+(function initRouter() {
+  const router = document.getElementById('router');
+  const out = document.getElementById('routerOut');
+  if (!router || !out) return;
+
+  const rows = Array.from(router.querySelectorAll('.router-row'));
+  if (!rows.length) return;
+
+  const blurbs = {
+    about: 'background, stack, how I work',
+    education: 'KTH — media technology, then computer science',
+    experience: 'roles, positions, what I shipped',
+    work: 'selected projects, filterable by tag',
+    contact: 'email and links'
+  };
+
+  const phone = window.matchMedia('(max-width: 620px)');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const idleText = 'idle — sampling attention over ' + rows.length + ' sections';
+
+  // One logit per row. Left alone they random-walk, so the softmax below keeps
+  // drifting the way an under-confident model would.
+  const logits = rows.map(() => Math.random() * 0.6);
+  let driftTimer = null;
+  let streamTimer = null;
+
+  function paint() {
+    const max = Math.max.apply(null, logits);
+    const weights = logits.map((l) => Math.exp((l - max) / 0.5));
+    const sum = weights.reduce((a, b) => a + b, 0);
+    return weights.map((w, i) => {
+      const p = w / sum;
+      rows[i].querySelector('.router-fill').style.width = (p * 100).toFixed(1) + '%';
+      rows[i].querySelector('.router-prob').textContent = p.toFixed(2);
+      return p;
+    });
+  }
+
+  function drift() {
+    for (let i = 0; i < logits.length; i++) {
+      logits[i] = Math.max(-0.5, Math.min(0.9, logits[i] + (Math.random() - 0.5) * 0.4));
+    }
+    paint();
+    driftTimer = setTimeout(drift, 1100);
+  }
+
+  function startDrift(delay) {
+    clearTimeout(driftTimer);
+    driftTimer = null;
+    // Nothing to animate when the router is off-screen or motion is unwanted.
+    if (still.matches || !phone.matches) return;
+    driftTimer = setTimeout(drift, delay);
+  }
+
+  function stream(text, done) {
+    clearTimeout(streamTimer);
+    if (still.matches) {
+      out.textContent = text;
+      if (done) done();
+      return;
+    }
+    let i = 0;
+    out.textContent = '';
+    (function step() {
+      out.textContent = text.slice(0, ++i);
+      if (i < text.length) streamTimer = setTimeout(step, 17);
+      else if (done) streamTimer = setTimeout(done, 240);
+    })();
+  }
+
+  function route(row) {
+    const id = row.getAttribute('data-target');
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const index = rows.indexOf(row);
+    rows.forEach((r, i) => r.classList.toggle('is-active', i === index));
+    for (let i = 0; i < logits.length; i++) {
+      // 1.6 lands the winner around 0.9 — confident, but not a suspicious 1.00.
+      logits[i] = i === index ? 1.6 : -0.4 + Math.random() * 0.3;
+    }
+    const probs = paint();
+
+    stream('→ route "' + id + '"  p=' + probs[index].toFixed(2) + '\n  ' + blurbs[id], () => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Let the collapsed distribution sit a moment before it starts drifting back.
+    startDrift(5200);
+  }
+
+  rows.forEach((row) => {
+    row.addEventListener('click', () => route(row));
+  });
+
+  out.textContent = idleText;
+  paint();
+  startDrift(900);
+  if (phone.addEventListener) phone.addEventListener('change', () => startDrift(900));
 })();

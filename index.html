@@ -69,14 +69,24 @@
           <div class="terminal-lines">
             <div class="terminal-block">
               <div class="terminal-prompt mono"><span class="accent">$</span> whoami</div>
+              <div class="terminal-avatar">
+                <span class="terminal-avatar-img">
+                  <img src="assets/psx2_avatar.jpg" alt="Pontus Filén" width="168" height="168" />
+                </span>
+                <span class="terminal-avatar-meta mono">
+                  <span class="available">●&nbsp;AVAILABLE 2026</span><br />
+                  ◷&nbsp;STOCKHOLM, SE<br />
+                  ◇&nbsp;Solvigo AB
+                </span>
+              </div>
               <div class="terminal-name">Pontus <span class="accent">Filén</span></div>
               <div class="terminal-role mono">AI · MACHINE LEARNING ENGINEER</div>
             </div>
             <div class="terminal-block">
               <div class="terminal-prompt mono"><span class="accent">$</span> cat focus.txt</div>
-              <div class="terminal-out">LLM-orchestrated agents · reinforcement learning · predictive models for real-world logistics</div>
+              <div class="terminal-out">LLM-orchestrated agents · reinforcement learning · predictive models for real-world logistics<span class="terminal-caret caret-mobile"></span></div>
             </div>
-            <div class="terminal-block">
+            <div class="terminal-block terminal-edu">
               <div class="terminal-prompt mono"><span class="accent">$</span> ls ./education</div>
               <div class="terminal-out">M.Sc. Computer Science — KTH, 2026<span class="terminal-caret"></span></div>
             </div>
@@ -103,6 +113,47 @@
             <button type="button" class="cli-chip mono" data-cmd="cd education">cd education</button>
             <button type="button" class="cli-chip mono" data-cmd="cd experience">cd experience</button>
             <button type="button" class="cli-chip mono" data-cmd="cd contact">cd contact</button>
+          </div>
+        </div>
+
+        <!-- Touch stand-in for the CLI: same job, no keyboard. Phones only. -->
+        <div class="terminal-router" id="router">
+          <div class="router-head mono">
+            <span class="router-model"><span class="router-dot"></span>pf-router</span>
+            <span class="router-hint">tap a route</span>
+          </div>
+          <div class="router-out mono" id="routerOut">idle — sampling attention over 5 sections</div>
+          <div class="router-rows">
+            <button type="button" class="router-row" data-target="about">
+              <span class="router-fill"></span>
+              <span class="router-idx mono" aria-hidden="true">01</span>
+              <span class="router-label">about</span>
+              <span class="router-prob mono" aria-hidden="true">0.00</span>
+            </button>
+            <button type="button" class="router-row" data-target="education">
+              <span class="router-fill"></span>
+              <span class="router-idx mono" aria-hidden="true">02</span>
+              <span class="router-label">education</span>
+              <span class="router-prob mono" aria-hidden="true">0.00</span>
+            </button>
+            <button type="button" class="router-row" data-target="experience">
+              <span class="router-fill"></span>
+              <span class="router-idx mono" aria-hidden="true">03</span>
+              <span class="router-label">experience</span>
+              <span class="router-prob mono" aria-hidden="true">0.00</span>
+            </button>
+            <button type="button" class="router-row is-primary" data-target="work">
+              <span class="router-fill"></span>
+              <span class="router-idx mono" aria-hidden="true">04</span>
+              <span class="router-label">work</span>
+              <span class="router-prob mono" aria-hidden="true">0.00</span>
+            </button>
+            <button type="button" class="router-row" data-target="contact">
+              <span class="router-fill"></span>
+              <span class="router-idx mono" aria-hidden="true">05</span>
+              <span class="router-label">contact</span>
+              <span class="router-prob mono" aria-hidden="true">0.00</span>
+            </button>
           </div>
         </div>
 
