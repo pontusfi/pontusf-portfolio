@@ -22,7 +22,7 @@ bar.
   helper classes, `[data-reveal]` scroll-reveal styles, and responsive
   rules (mobile breakpoint at 760px).
 - `script.js` — all interactivity:
-  - `projects` object: data for each of the 6 project cards (category,
+  - `projects` object: data for each of the project cards (category,
     title, overview, tags, screenshots, role, github/pdf links, etc.)
   - mobile menu toggle, scroll progress bar, scroll-down hint fade
   - `IntersectionObserver` for `[data-reveal]` scroll animations
