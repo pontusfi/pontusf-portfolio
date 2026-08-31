@@ -20,6 +20,26 @@ const projects = {
     status: "IN PROGRESS · 2026",
     aiAssisted: true
   },
+  'music-visualizer': {
+    category: "AUDIO · MUSIC VIDEO TOOL",
+    title: "Music Visualizer Generator",
+    subtitle: "Turns a track and its cover art into a finished music video, with visuals that move to the music.",
+    overview: "The tool listens to a song, works out where the drums, riffs and section changes are, and draws a video from that. Nothing is filmed off a screen, so the visuals land exactly on the beat and the same track always renders the same video. Five visual styles and five backgrounds can be combined freely, and a small web app handles the whole job: upload a cover and a master, pick a look, get an mp4 back.",
+    screens: ["assets/music_visualizer.png"],
+    tags: ["Python", "librosa", "Playwright", "ffmpeg", "FastAPI", "React", "TypeScript"],
+    features: [
+      "Separates drums from guitars before drawing, so the kick and the riff move independently instead of blurring together.",
+      "Reads loudness, key and section changes from the track and uses them to drive the visuals.",
+      "Five looks and five backgrounds, mixed and matched from the same set of files.",
+      "A web app front end: upload artwork and audio, choose a style, render the video."
+    ],
+    role: "I built the whole thing: the audio analysis, the visuals, the video export and the web app around them. The hardest part was speed. Getting finished frames out of the browser took far longer than drawing them, so I changed how the video is encoded and made it roughly six times faster at better quality. Development was AI-assisted, with Claude Code used alongside code I write and review myself.",
+    github: null,
+    pdf: null,
+    inProgress: false,
+    status: "",
+    aiAssisted: true
+  },
   'masters-thesis': {
     category: "MASTER'S THESIS · APPLIED ML IN LOGISTICS",
     title: "Predicting transport delays in courier logistics using machine learning",
